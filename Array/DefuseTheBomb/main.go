@@ -22,7 +22,7 @@ func decrypt(code []int, k int) []int {
 			codeRes[i] = sum
 		}
 		if k < 0 {
-			for j := 1; j <= k; j++ {
+			for j := 1; j <= -k; j++ {
 				sum += code[(i-j+n)%n]
 			}
 			codeRes[i] = sum
