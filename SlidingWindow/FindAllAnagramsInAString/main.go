@@ -14,7 +14,7 @@ func findAnagrams(s string, p string) []int {
 		return nil
 	}
 
-	idxArr := make([]int, 0, len(s)/len(p))
+	idxArr := make([]int, 0, len(s)-len(p)+1)
 	spHash := make(map[byte]int)
 
 	for i := 0; i < len(p); i++ {
