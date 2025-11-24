@@ -9,13 +9,14 @@ func main() {
 }
 
 func minimumDifference(nums []int, k int) int {
+
 	if k == 1 {
 		return 0
 	}
 
 	sort.Ints(nums)
 	diff := 100001
-	for i := 0; i <= len(nums)-k; i++ {
+	for i := 0; i < len(nums)-k-1; i++ {
 		diff = min(diff, nums[i+k-1]-nums[i])
 	}
 	return diff
