@@ -7,9 +7,8 @@ type TreeNode struct {
 }
 
 func deepestLeavesSum(root *TreeNode) int {
-	sum := 0
 	expDepth := findTreeDepth(root)
-	sum += addDeepestLeaveToSum(root, expDepth, 0)
+	sum := addDeepestLeaveToSum(root, expDepth, 1)
 	return sum
 }
 
