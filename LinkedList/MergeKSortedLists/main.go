@@ -1,0 +1,36 @@
+package main
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func mergeKLists(lists []*ListNode) *ListNode {
+	if len(lists) == 0 {
+		return nil
+	}
+	if len(lists) == 1 {
+		return lists[0]
+	}
+
+	left := mergeKLists(lists[:len(lists)/2])
+	right := mergeKLists(lists[len(lists)/2:])
+	return mergeTwoLists(left, right)
+}
+
+func mergeTwoLists(list1, list2 *ListNode) *ListNode {
+	if list1 == nil {
+		return list2
+	}
+	if list2 == nil {
+		return list1
+	}
+
+	if list2.Val < list1.Val {
+		list2.Next = mergeTwoLists(list2.Next, list1)
+		return list2
+	} else {
+		list1.Next = mergeTwoLists(list1.Next, list2)
+		return list1
+	}
+}
