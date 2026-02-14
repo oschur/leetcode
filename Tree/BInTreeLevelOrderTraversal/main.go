@@ -6,7 +6,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func levelOrder(root *TreeNode) [][]int {
+func levelOrderBFS(root *TreeNode) [][]int {
 	if root == nil {
 		return nil
 	}
@@ -33,6 +33,29 @@ func levelOrder(root *TreeNode) [][]int {
 
 		res = append(res, level)
 	}
+
+	return res
+}
+
+func levelOrderDFS(root *TreeNode) [][]int {
+	res := [][]int{}
+
+	var dfs func(node *TreeNode, level int)
+	dfs = func(node *TreeNode, level int) {
+		if node == nil {
+			return
+		}
+
+		if len(res) == level {
+			res = append(res, []int{})
+		}
+
+		res[level] = append(res[level], node.Val)
+
+		dfs(node.Left, level+1)
+		dfs(node.Right, level+1)
+	}
+	dfs(root, 0)
 
 	return res
 }
