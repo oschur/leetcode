@@ -73,3 +73,39 @@ func findRight(nums []int, target int) int {
 	}
 	return res
 }
+
+func searchRangeAnother(nums []int, target int) []int {
+	res := []int{-1, -1}
+	if len(nums) == 0 {
+		return res
+	}
+
+	l, r := -1, len(nums)-1
+	for r-l > 1 {
+		m := l + (r-l)/2
+		if nums[m] < target {
+			l = m
+		} else {
+			r = m
+		}
+	}
+	if r >= 0 && nums[r] == target {
+		res[0] = r
+	}
+
+	l, r = 0, len(nums)
+
+	for r-l > 1 {
+		m := l + (r-l)/2
+		if nums[m] > target {
+			r = m
+		} else {
+			l = m
+		}
+	}
+	if l < len(nums) && nums[l] == target {
+		res[1] = l
+	}
+
+	return res
+}
